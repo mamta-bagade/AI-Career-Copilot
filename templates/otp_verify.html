@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<div class="auth-container">
+    <div class="auth-card">
+        <h2>✉️ Enter OTP</h2>
+        <p class="sub-text">OTP has been sent to your email. Please check your inbox.</p>
+ 
+        {% if error %}
+        <div class="error-msg">{{ error }}</div>
+        {% endif %}
+ 
+        <form method="POST">
+            <input type="text" name="otp" placeholder="Enter 6 digit OTP" maxlength="6" required class="otp-input">
+            <button type="submit">Verify OTP ✅</button>
+        </form>
+ 
+        <p class="switch-auth">
+            Didn't receive OTP? <a href="/forgot-password">Resend</a>
+        </p>
+    </div>
+</div>
+ 
+{% endblock %}
+ 

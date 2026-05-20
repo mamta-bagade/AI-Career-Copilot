@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+ 
+<p class="page-title">📁 Your History</p>
+ 
+{% if reports %}
+    {% for r in reports %}
+    <div class="card">
+        <div class="history-meta">
+            📄 Resume Preview: {{ r.resume[:150] if r.resume else "No resume text" }}...
+        </div>
+ 
+        <div class="result-grid">
+ 
+            <div class="result-box">
+                <h3>✅ Current Skills</h3>
+                <ul>
+                    {% for s in r.result.get("skills", []) %}
+                    <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+ 
+            <div class="result-box">
+                <h3>❌ Missing Skills</h3>
+                <ul>
+                    {% for s in r.result.get("missing_skills", []) %}
+                    <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+ 
+            <div class="result-box">
+                <h3>🗺️ Roadmap</h3>
+                <ul>
+                    {% for s in r.result.get("roadmap", []) %}
+                    <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+ 
+            <div class="result-box">
+                <h3>🎯 Interview Questions</h3>
+                <ul>
+                    {% for s in r.result.get("interview_questions", []) %}
+                    <li>{{ s }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+ 
+        </div>
+    </div>
+    {% endfor %}
+{% else %}
+    <div class="card">
+        <p style="color:#6b7280; text-align:center;">No history yet. Analyze your first resume! 🚀</p>
+    </div>
+{% endif %}
+ 
+{% endblock %}
